@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, Box, Grid, Chip, useTheme } from '@mui/material';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { 
@@ -26,6 +26,7 @@ const CheckSummaryCard: React.FC<CheckSummaryCardProps> = ({
   onSeverityClick
 }) => {
   const theme = useTheme();
+  const [animatedData, setAnimatedData] = useState<CheckSummaryData>({ error: 0, warning: 0, info: 0 });
 
   const getSeverityConfig = (severity: keyof CheckSummaryData) => {
     const configs = {
@@ -51,14 +52,19 @@ const CheckSummaryCard: React.FC<CheckSummaryCardProps> = ({
     return configs[severity];
   };
 
-  // Prepare data for the bar chart
-  const chartData = Object.entries(summary)
-    .filter(([_, value]) => value >= 0) // Include all values, even zeros for proper display
+  // No animation - just show final data immediately
+  useEffect(() => {
+    setAnimatedData(summary);
+  }, [summary]);
+
+  // Prepare data for the bar chart using animated data
+  const chartData = Object.entries(animatedData)
+    .filter(([_, value]) => (value as number) >= 0)
     .map(([severity, value]) => {
       const config = getSeverityConfig(severity as keyof CheckSummaryData);
       return {
         name: config.label,
-        value,
+        value: value as number,
         color: config.color,
         severity
       };
@@ -78,7 +84,7 @@ const CheckSummaryCard: React.FC<CheckSummaryCardProps> = ({
   console.log('🔍 Debug - testData:', testData);
   console.log('🔍 Debug - max value should be:', Math.max(...testData.map(d => d.value)));
 
-  const totalIssues = summary.error + summary.warning + summary.info;
+  const totalIssues = animatedData.error + animatedData.warning + animatedData.info;
   const hasIssues = totalIssues > 0;
 
   // Custom tooltip for the chart
@@ -169,7 +175,7 @@ const CheckSummaryCard: React.FC<CheckSummaryCardProps> = ({
                     dataKey="value" 
                     fill="#8884d8"
                     radius={[4, 4, 0, 0]}
-                    animationDuration={animate ? 1000 : 0}
+                    animationDuration={0}
                   >
                     {chartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
@@ -183,7 +189,7 @@ const CheckSummaryCard: React.FC<CheckSummaryCardProps> = ({
 
         {/* Statistics Grid */}
         <Grid container spacing={1}>
-          {Object.entries(summary).map(([severity, count]) => {
+          {Object.entries(animatedData).map(([severity, count]) => {
             const config = getSeverityConfig(severity as keyof CheckSummaryData);
             const percentage = hasIssues ? ((count / totalIssues) * 100).toFixed(1) : '0';
             const isClickable = onSeverityClick && count > 0;
@@ -217,7 +223,7 @@ const CheckSummaryCard: React.FC<CheckSummaryCardProps> = ({
                       </Typography>
                     </Box>
                     <Chip
-                      label={count}
+                      label={count as number}
                       size="small"
                       sx={{
                         backgroundColor: config.color,

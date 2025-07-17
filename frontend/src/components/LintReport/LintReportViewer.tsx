@@ -24,6 +24,7 @@ const LintReportViewer: React.FC<LintReportViewerProps> = ({ jobId }) => {
   const [lintData, setLintData] = useState<LintReportData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [animationPhase, setAnimationPhase] = useState<'loading' | 'quality-score' | 'summary' | 'complete'>('loading');
 
   useEffect(() => {
     loadLintReport();
@@ -38,6 +39,18 @@ const LintReportViewer: React.FC<LintReportViewerProps> = ({ jobId }) => {
       
       if (response.success && response.data) {
         setLintData(response.data);
+        // Wait for components to render, then start animations
+        setTimeout(() => {
+          setAnimationPhase('quality-score');
+          // Wait for quality score animation to complete (1200ms) plus a small buffer
+          setTimeout(() => {
+            setAnimationPhase('summary');
+            // Wait for summary animation to complete (800ms) plus a small buffer
+            setTimeout(() => {
+              setAnimationPhase('complete');
+            }, 1000); // Summary animation duration + buffer
+          }, 1400); // Quality score animation duration + buffer
+        }, 300); // Longer delay to ensure components are fully rendered
       } else {
         setError(response.error || 'Failed to load lint report');
       }
@@ -128,20 +141,40 @@ const LintReportViewer: React.FC<LintReportViewerProps> = ({ jobId }) => {
         <Grid container spacing={3}>
           {/* Top Row - Quality Score and Summary */}
           <Grid item xs={12} md={4}>
-            <QualityScoreGauge
-              score={lintData.designQualityScore}
-              design={lintData.design}
-              timestamp={lintData.timestamp}
-              animate={true}
-            />
+            {animationPhase === 'loading' ? (
+              <Card sx={{ height: '100%' }}>
+                <CardContent>
+                  <Box display="flex" justifyContent="center" alignItems="center" height={200}>
+                    <CircularProgress size={40} />
+                  </Box>
+                </CardContent>
+              </Card>
+            ) : (
+              <QualityScoreGauge
+                score={lintData.designQualityScore}
+                design={lintData.design}
+                timestamp={lintData.timestamp}
+                animate={animationPhase === 'quality-score'}
+              />
+            )}
           </Grid>
           
           <Grid item xs={12} md={8}>
-            <CheckSummaryCard
-              summary={lintData.summary}
-              animate={true}
-              onSeverityClick={handleSeverityClick}
-            />
+            {animationPhase === 'loading' || animationPhase === 'quality-score' ? (
+              <Card sx={{ height: '100%' }}>
+                <CardContent>
+                  <Box display="flex" justifyContent="center" alignItems="center" height={200}>
+                    <CircularProgress size={40} />
+                  </Box>
+                </CardContent>
+              </Card>
+            ) : (
+              <CheckSummaryCard
+                summary={lintData.summary}
+                animate={animationPhase === 'summary'}
+                onSeverityClick={handleSeverityClick}
+              />
+            )}
           </Grid>
 
           {/* Design Information Card */}

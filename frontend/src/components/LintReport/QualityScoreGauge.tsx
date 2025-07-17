@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Typography, Card, CardContent, Chip, useTheme } from '@mui/material';
-import { Speed as SpeedIcon, TrendingUp as TrendingUpIcon, EmojiEvents as TrophyIcon } from '@mui/icons-material';
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, Typography, Box, Chip } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import SpeedIcon from '@mui/icons-material/Speed';
 
 interface QualityRange {
   min: number;
@@ -37,9 +38,10 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
 
   useEffect(() => {
     if (animate) {
-      setAnimatedScore(0); // Reset to 0 for animation
-      const duration = 2000; // 2 seconds
-      const steps = 60;
+      // Reset to 0 and start animation
+      setAnimatedScore(0);
+      const duration = 1200;
+      const steps = 30;
       const stepValue = score / steps;
       let currentStep = 0;
 
@@ -56,9 +58,10 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
 
       return () => clearInterval(interval);
     } else {
+      // If not animating, show final score immediately
       setAnimatedScore(score);
     }
-  }, [score, animate]); // Removed animatedScore from dependencies
+  }, [score, animate]);
 
   const getScoreInfo = (score: number): QualityRange => {
     return qualityRanges.find(range => score >= range.min && score <= range.max) || qualityRanges[qualityRanges.length - 1];
@@ -66,29 +69,6 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
 
   const scoreInfo = getScoreInfo(score);
   const displayScore = animate ? animatedScore : score;
-
-  // Calculate needle angle (180 degrees = semicircle)
-  const needleAngle = (displayScore / 100) * 180 - 90; // -90 to 90 degrees
-
-  // Calculate needle end position
-  const needleLength = 80;
-  const centerX = 150;
-  const centerY = 140;
-  const needleX = centerX + needleLength * Math.cos((needleAngle * Math.PI) / 180);
-  const needleY = centerY + needleLength * Math.sin((needleAngle * Math.PI) / 180);
-
-  // Create SVG paths for colored segments
-  const createArcPath = (startAngle: number, endAngle: number, radius: number) => {
-    const start = (startAngle * Math.PI) / 180;
-    const end = (endAngle * Math.PI) / 180;
-    const x1 = centerX + radius * Math.cos(start);
-    const y1 = centerY + radius * Math.sin(start);
-    const x2 = centerX + radius * Math.cos(end);
-    const y2 = centerY + radius * Math.sin(end);
-    const largeArc = endAngle - startAngle <= 180 ? 0 : 1;
-
-    return `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}`;
-  };
 
   return (
     <Card 
@@ -106,133 +86,133 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
         </Typography>
         
         <Box display="flex" flexDirection="column" alignItems="center" position="relative">
-          {/* SVG Gauge */}
-          <Box sx={{ position: 'relative', width: 300, height: 180 }}>
-            <svg width="300" height="180" viewBox="0 0 300 180">
-              {/* Background segments */}
-              {qualityRanges.reverse().map((range, index) => {
-                const startAngle = (range.min / 100) * 180 - 90;
-                const endAngle = (range.max / 100) * 180 - 90;
+          {/* Main Score Display */}
+          <Box 
+            sx={{ 
+              textAlign: 'center',
+              background: theme.palette.background.paper,
+              borderRadius: 3,
+              padding: 3,
+              boxShadow: theme.shadows[3],
+              border: `2px solid ${scoreInfo.color}30`,
+              mb: 3,
+              minWidth: 200
+            }}
+          >
+            <Typography 
+              variant="h2" 
+              fontWeight="bold" 
+              sx={{ 
+                color: scoreInfo.color,
+                textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                lineHeight: 1.2,
+                mb: 1
+              }}
+            >
+              {displayScore.toFixed(1)}%
+            </Typography>
+            <Typography variant="h5" sx={{ color: scoreInfo.color, fontWeight: 'bold' }}>
+              {scoreInfo.icon} {scoreInfo.label}
+            </Typography>
+          </Box>
+
+          {/* Horizontal Progress Bar */}
+          <Box sx={{ width: '100%', maxWidth: 400, mb: 3 }}>
+            {/* Background bar with quality ranges */}
+            <Box sx={{ position: 'relative', height: 40, mb: 2 }}>
+              {/* Background quality ranges */}
+              {qualityRanges.map((range, index) => {
+                const rangeWidth = ((range.max - range.min) / 100) * 100;
+                const rangeLeft = (range.min / 100) * 100;
+                
                 return (
-                  <path
+                  <Box
                     key={index}
-                    d={createArcPath(startAngle, endAngle, 70)}
-                    stroke={range.color}
-                    strokeWidth="12"
-                    fill="none"
-                    opacity={0.15}
-                    strokeLinecap="round"
-                    style={{ zIndex: 1 }}
+                    sx={{
+                      position: 'absolute',
+                      left: `${rangeLeft}%`,
+                      width: `${rangeWidth}%`,
+                      height: '100%',
+                      backgroundColor: range.color,
+                      opacity: 0.2,
+                      borderRadius: 1
+                    }}
                   />
                 );
               })}
               
-              {/* Active progress arc */}
-              <path
-                d={createArcPath(-90, needleAngle, 70)}
-                stroke={scoreInfo.color}
-                strokeWidth="12"
-                fill="none"
-                strokeLinecap="round"
-                style={{
-                  filter: `drop-shadow(0 0 8px ${scoreInfo.color}50)`,
-                  transition: animate ? 'all 0.1s ease-out' : 'none'
+              {/* Progress bar */}
+              <Box
+                sx={{
+                  position: 'absolute',
+                  left: 0,
+                  top: 0,
+                  width: `${displayScore}%`,
+                  height: '100%',
+                  background: scoreInfo.gradient,
+                  borderRadius: 1,
+                  transition: animate ? 'width 0.1s ease-out' : 'none',
+                  boxShadow: `0 0 10px ${scoreInfo.color}40`
                 }}
               />
-
-              {/* Needle */}
-              <line
-                x1={centerX}
-                y1={centerY}
-                x2={needleX}
-                y2={needleY}
-                stroke={scoreInfo.color}
-                strokeWidth="4"
-                strokeLinecap="round"
-                style={{
-                  filter: `drop-shadow(0 2px 4px ${scoreInfo.color}40)`,
-                  transition: animate ? 'all 0.1s ease-out' : 'none'
-                }}
-              />
-
-              {/* Center circle */}
-              <circle
-                cx={centerX}
-                cy={centerY}
-                r="8"
-                fill={scoreInfo.color}
-                style={{
-                  filter: `drop-shadow(0 2px 6px ${scoreInfo.color}60)`
+              
+              {/* Needle indicator */}
+              <Box
+                sx={{
+                  position: 'absolute',
+                  left: `${displayScore}%`,
+                  top: -5,
+                  width: 4,
+                  height: 50,
+                  backgroundColor: scoreInfo.color,
+                  borderRadius: 2,
+                  transform: 'translateX(-50%)',
+                  transition: animate ? 'left 0.1s ease-out' : 'none',
+                  boxShadow: `0 0 8px ${scoreInfo.color}60`,
+                  zIndex: 2
                 }}
               />
 
               {/* Scale markers */}
-              {[0, 25, 50, 75, 100].map(value => {
-                const angle = (value / 100) * 180 - 90;
-                const x1 = centerX + 60 * Math.cos((angle * Math.PI) / 180);
-                const y1 = centerY + 60 * Math.sin((angle * Math.PI) / 180);
-                const x2 = centerX + 55 * Math.cos((angle * Math.PI) / 180);
-                const y2 = centerY + 55 * Math.sin((angle * Math.PI) / 180);
-                
-                return (
-                  <g key={value}>
-                    <line
-                      x1={x1}
-                      y1={y1}
-                      x2={x2}
-                      y2={y2}
-                      stroke={theme.palette.text.secondary}
-                      strokeWidth="2"
-                    />
-                    <text
-                      x={centerX + 45 * Math.cos((angle * Math.PI) / 180)}
-                      y={centerY + 45 * Math.sin((angle * Math.PI) / 180) + 4}
-                      textAnchor="middle"
-                      fontSize="12"
-                      fill={theme.palette.text.secondary}
-                    >
-                      {value}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
-            
-            {/* Center score display */}
-            <Box 
+              {[0, 25, 50, 75, 100].map(value => (
+                <Box
+                  key={value}
               sx={{ 
                 position: 'absolute', 
-                top: '65%', 
-                left: '50%', 
-                transform: 'translate(-50%, -50%)', 
-                textAlign: 'center',
-                background: theme.palette.background.paper,
-                borderRadius: 2,
-                padding: 1.5,
-                boxShadow: theme.shadows[3],
-                zIndex: 10,
-                border: `1px solid ${theme.palette.divider}`
-              }}
-            >
+                    left: `${value}%`,
+                    top: 0,
+                    width: 2,
+                    height: '100%',
+                    backgroundColor: theme.palette.text.secondary,
+                    opacity: 0.3,
+                    transform: 'translateX(-50%)'
+                  }}
+                />
+              ))}
+              
+              {/* Scale labels */}
+              {[0, 25, 50, 75, 100].map(value => (
               <Typography 
-                variant="h3" 
-                fontWeight="bold" 
+                  key={value}
+                  variant="caption"
                 sx={{ 
-                  color: scoreInfo.color,
-                  textShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                  lineHeight: 1.2
-                }}
-              >
-                {displayScore.toFixed(1)}%
+                    position: 'absolute',
+                    left: `${value}%`,
+                    top: 45,
+                    transform: 'translateX(-50%)',
+                    color: theme.palette.text.secondary,
+                    fontSize: '0.7rem',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  {value}
               </Typography>
-              <Typography variant="h6" sx={{ color: scoreInfo.color, fontWeight: 'bold' }}>
-                {scoreInfo.icon} {scoreInfo.label}
-              </Typography>
+              ))}
             </Box>
           </Box>
 
           {/* Additional metrics */}
-          <Box mt={2} display="flex" gap={1} flexWrap="wrap" justifyContent="center">
+          <Box display="flex" gap={1} flexWrap="wrap" justifyContent="center" mb={2}>
             <Chip 
               icon={<SpeedIcon />} 
               label="Industry Avg: 78%" 
@@ -243,7 +223,7 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
 
           {/* Metadata */}
           {(design || timestamp) && (
-            <Box mt={2} textAlign="center">
+            <Box textAlign="center">
               {design && (
                 <Typography variant="caption" color="text.secondary" display="block">
                   Design: {design}
