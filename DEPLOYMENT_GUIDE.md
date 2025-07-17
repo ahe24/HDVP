@@ -34,7 +34,7 @@ sudo apt-get install git -y  # Ubuntu/Debian
 ```bash
 # On target server
 cd /opt
-sudo git clone <your-repository-url> questa-web-interface
+sudo git clone https://github.com/ahe24DVP.git questa-web-interface
 sudo chown -R $USER:$USER questa-web-interface
 cd questa-web-interface
 ```
@@ -57,18 +57,19 @@ tar -xzf questa-web-interface-backup.tar.gz
 mv questa-web-interface-backup questa-web-interface
 ```
 
-## Step 2: Transfer Database and Workspace
-
-### Database Transfer
+### Option C: Download from GitHub Release
 ```bash
-# On source server - backup database
-cp backend/data/questasim.db questa-db-backup.db
-
-# Transfer to target server
-scp questa-db-backup.db user@target-server:/opt/questa-web-interface/backend/data/questasim.db
+# Download latest release from GitHub
+cd /opt
+wget https://github.com/ahe24/HDVP/archive/refs/heads/main.zip
+unzip main.zip
+mv HDVP-main questa-web-interface
+cd questa-web-interface
 ```
 
-### Workspace Transfer
+## Step2Transfer Workspace Data
+
+### Workspace Transfer (Projects and Jobs)
 ```bash
 # On source server - backup workspace
 tar -czf workspace-backup.tar.gz workspace/
@@ -81,9 +82,33 @@ tar -xzf workspace-backup.tar.gz
 rm workspace-backup.tar.gz
 ```
 
+### Database Note
+The application uses SQLite database that will be created automatically on first run:
+- **Source**: No existing database file to transfer
+- **Target**: Database will be created at `backend/data/questasim.db` when application starts
+- **Data**: All project and job data is stored in the `workspace/` directory structure
+
 ## Step 3: Configure Environment Variables
 
-### Create Environment File
+### Option A: Use Deployment Configuration Script (Recommended)
+```bash
+cd /opt/questa-web-interface
+
+# Make the script executable
+chmod +x scripts/deploy-config.sh
+
+# Run the interactive configuration script
+./scripts/deploy-config.sh
+```
+
+This script will:
+- Automatically detect QuestaSim installation paths
+- Prompt for network configuration (IP, ports)
+- Configure license server settings
+- Test QuestaSim tools and license connectivity
+- Create a properly formatted `.env` file
+
+### Option B: Manual Configuration
 ```bash
 cd /opt/questa-web-interface
 cp env.example .env
@@ -264,13 +289,18 @@ netstat -tlnp | grep :300
 
 #### 4. Database Issues
 ```bash
-# Check database file permissions
+# Check if database directory exists
+ls -la backend/data/
+
+# Create database directory if missing
+mkdir -p backend/data
+
+# Check database file permissions (if exists)
 ls -la backend/data/questasim.db
 
-# Recreate database if corrupted
+# Recreate database if corrupted (if exists)
 rm backend/data/questasim.db
-touch backend/data/questasim.db
-chmod644backend/data/questasim.db
+# Database will be recreated on next application start
 ```
 
 ### Log Locations
@@ -301,8 +331,10 @@ DATE=$(date +%Y%m%d_%H%M%S)
 
 mkdir -p $BACKUP_DIR
 
-# Backup database
-cp /opt/questa-web-interface/backend/data/questasim.db $BACKUP_DIR/questasim_$DATE.db
+# Backup database (if exists)
+if [ -f /opt/questa-web-interface/backend/data/questasim.db ]; then
+    cp /opt/questa-web-interface/backend/data/questasim.db $BACKUP_DIR/questasim_$DATE.db
+fi
 
 # Backup workspace
 tar -czf $BACKUP_DIR/workspace_$DATE.tar.gz -C /opt/questa-web-interface workspace/
