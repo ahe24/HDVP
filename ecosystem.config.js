@@ -1,5 +1,35 @@
 // Environment-based configuration for DHCP environments
 const os = require('os');
+const path = require('path');
+const fs = require('fs');
+
+// Load .env file if it exists
+function loadEnvFile() {
+  const envPath = path.join(__dirname, '.env');
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, 'utf8');
+    const envLines = envContent.split('\n');
+    
+    envLines.forEach(line => {
+      const trimmedLine = line.trim();
+      if (trimmedLine && !trimmedLine.startsWith('#')) {
+        const [key, ...valueParts] = trimmedLine.split('=');
+        if (key && valueParts.length > 0) {
+          const value = valueParts.join('=').trim();
+          // Remove quotes if present
+          const cleanValue = value.replace(/^["]|["]$/, '');
+          process.env[key] = cleanValue;
+        }
+      }
+    });
+    console.log('📄 Loaded .env file');
+  } else {
+    console.log('⚠️  No .env file found, using default values');
+  }
+}
+
+// Load environment variables from .env file
+loadEnvFile();
 
 // Get local IP address automatically
 function getLocalIP() {
@@ -26,7 +56,19 @@ const config = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   
   // Logging
-  LOG_LEVEL: process.env.LOG_LEVEL || 'info'
+  LOG_LEVEL: process.env.LOG_LEVEL || 'info',
+  
+  // QuestaSim Tool Paths
+  QUESTA_MODELTECH_PATH: process.env.QUESTA_MODELTECH_PATH,
+  QUESTA_VLOG_PATH: process.env.QUESTA_VLOG_PATH,
+  QUESTA_VOPT_PATH: process.env.QUESTA_VOPT_PATH,
+  QUESTA_VSIM_PATH: process.env.QUESTA_VSIM_PATH,
+  QUESTA_FORMAL_PATH: process.env.QUESTA_FORMAL_PATH,
+  QUESTA_QVERIFY_PATH: process.env.QUESTA_QVERIFY_PATH,
+  
+  // License Configuration
+  LICENSE_SERVER: process.env.LICENSE_SERVER,
+  SALT_LICENSE_SERVER: process.env.SALT_LICENSE_SERVER
 };
 
 console.log(`🚀 PM2 Configuration:`);
@@ -34,6 +76,8 @@ console.log(`   Host IP: ${config.HOST_IP}`);
 console.log(`   Backend Port: ${config.BACKEND_PORT}`);
 console.log(`   Frontend Port: ${config.FRONTEND_PORT}`);
 console.log(`   Environment: ${config.NODE_ENV}`);
+console.log(`   QuestaSim Path: ${config.QUESTA_MODELTECH_PATH || 'Not set'}`);
+console.log(`   License Server: ${config.SALT_LICENSE_SERVER || 'Not set'}`);
 
 // Define apps array
 const apps = [
@@ -47,13 +91,33 @@ const apps = [
       NODE_ENV: config.NODE_ENV,
       PORT: config.BACKEND_PORT,
       HOST: config.HOST_IP,
-      LOG_LEVEL: config.LOG_LEVEL
+      LOG_LEVEL: config.LOG_LEVEL,
+      // QuestaSim Tool Paths
+      QUESTA_MODELTECH_PATH: config.QUESTA_MODELTECH_PATH,
+      QUESTA_VLOG_PATH: config.QUESTA_VLOG_PATH,
+      QUESTA_VOPT_PATH: config.QUESTA_VOPT_PATH,
+      QUESTA_VSIM_PATH: config.QUESTA_VSIM_PATH,
+      QUESTA_FORMAL_PATH: config.QUESTA_FORMAL_PATH,
+      QUESTA_QVERIFY_PATH: config.QUESTA_QVERIFY_PATH,
+      // License Configuration
+      LICENSE_SERVER: config.LICENSE_SERVER,
+      SALT_LICENSE_SERVER: config.SALT_LICENSE_SERVER
     },
     env_production: {
       NODE_ENV: 'production',
       PORT: config.BACKEND_PORT,
       HOST: config.HOST_IP,
-      LOG_LEVEL: 'warn'
+      LOG_LEVEL: 'warn',
+      // QuestaSim Tool Paths
+      QUESTA_MODELTECH_PATH: config.QUESTA_MODELTECH_PATH,
+      QUESTA_VLOG_PATH: config.QUESTA_VLOG_PATH,
+      QUESTA_VOPT_PATH: config.QUESTA_VOPT_PATH,
+      QUESTA_VSIM_PATH: config.QUESTA_VSIM_PATH,
+      QUESTA_FORMAL_PATH: config.QUESTA_FORMAL_PATH,
+      QUESTA_QVERIFY_PATH: config.QUESTA_QVERIFY_PATH,
+      // License Configuration
+      LICENSE_SERVER: config.LICENSE_SERVER,
+      SALT_LICENSE_SERVER: config.SALT_LICENSE_SERVER
     },
     watch: false,
     max_memory_restart: '1G',
@@ -69,7 +133,17 @@ const apps = [
       NODE_ENV: 'development',
       PORT: config.BACKEND_PORT,
       HOST: config.HOST_IP,
-      LOG_LEVEL: 'debug'
+      LOG_LEVEL: 'debug',
+      // QuestaSim Tool Paths
+      QUESTA_MODELTECH_PATH: config.QUESTA_MODELTECH_PATH,
+      QUESTA_VLOG_PATH: config.QUESTA_VLOG_PATH,
+      QUESTA_VOPT_PATH: config.QUESTA_VOPT_PATH,
+      QUESTA_VSIM_PATH: config.QUESTA_VSIM_PATH,
+      QUESTA_FORMAL_PATH: config.QUESTA_FORMAL_PATH,
+      QUESTA_QVERIFY_PATH: config.QUESTA_QVERIFY_PATH,
+      // License Configuration
+      LICENSE_SERVER: config.LICENSE_SERVER,
+      SALT_LICENSE_SERVER: config.SALT_LICENSE_SERVER
     }
   }
 ];
