@@ -120,8 +120,9 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
                     stroke={range.color}
                     strokeWidth="12"
                     fill="none"
-                    opacity={0.3}
+                    opacity={0.15}
                     strokeLinecap="round"
+                    style={{ zIndex: 1 }}
                   />
                 );
               })}
@@ -207,8 +208,10 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
                 textAlign: 'center',
                 background: theme.palette.background.paper,
                 borderRadius: 2,
-                padding: 1,
-                boxShadow: theme.shadows[2]
+                padding: 1.5,
+                boxShadow: theme.shadows[3],
+                zIndex: 10,
+                border: `1px solid ${theme.palette.divider}`
               }}
             >
               <Typography 
@@ -216,10 +219,8 @@ const QualityScoreGauge: React.FC<QualityScoreGaugeProps> = ({
                 fontWeight="bold" 
                 sx={{ 
                   color: scoreInfo.color,
-                  background: scoreInfo.gradient,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                  textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                  lineHeight: 1.2
                 }}
               >
                 {displayScore.toFixed(1)}%
