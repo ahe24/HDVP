@@ -39,12 +39,8 @@ const LintReportViewer: React.FC<LintReportViewerProps> = ({ jobId }) => {
       
       if (response.success && response.data) {
         setLintData(response.data);
-        // Start quality score animation immediately after data loads
-        setAnimationPhase('quality-score');
-        // Quality score animation completes in ~1200ms, then show everything
-        setTimeout(() => {
-          setAnimationPhase('complete');
-        }, 1300); // Quality score animation duration + small buffer
+        // Show content immediately, animation runs in background
+        setAnimationPhase('complete');
       } else {
         setError(response.error || 'Failed to load lint report');
       }

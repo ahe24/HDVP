@@ -291,8 +291,8 @@ const JobDetail: React.FC = () => {
       setJob(prev => prev ? { ...prev, status: statusData.status } : null);
       setLastUpdate(new Date());
       
-      // Reload full job data on status change
-      if (id) {
+      // Only reload full job data if status changed to completed/failed
+      if (id && (statusData.status === 'completed' || statusData.status === 'failed')) {
         loadJob(id);
       }
     }
