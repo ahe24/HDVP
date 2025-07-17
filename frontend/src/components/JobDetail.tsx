@@ -236,11 +236,9 @@ const JobDetail: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      console.log('🔄 Loading job details...', jobId);
       const response = await apiService.getJob(jobId);
       
       if (response.success && response.data) {
-        console.log('✅ Job loaded successfully', response.data);
         setJob(response.data);
         setLastUpdate(new Date());
       } else {
@@ -275,7 +273,6 @@ const JobDetail: React.FC = () => {
   const loadJobLogs = async (jobId: string) => {
     try {
       const response = await apiService.getLogFile(jobId);
-      console.log('Logs loaded for debugging purposes');
     } catch (err) {
       console.warn('Failed to load job logs:', err);
     }

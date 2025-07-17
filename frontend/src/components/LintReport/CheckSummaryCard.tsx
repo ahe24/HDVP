@@ -70,19 +70,7 @@ const CheckSummaryCard: React.FC<CheckSummaryCardProps> = ({
       };
     });
 
-  // Debug logging
-  console.log('Summary data:', summary);
-  console.log('Chart data:', chartData);
-
-  // Test data to verify chart works - SIMPLIFIED
-  const testData = [
-    { name: 'Errors', value: 5 },
-    { name: 'Warnings', value: 2 },
-    { name: 'Info', value: 34 }
-  ];
-  
-  console.log('🔍 Debug - testData:', testData);
-  console.log('🔍 Debug - max value should be:', Math.max(...testData.map(d => d.value)));
+  // Chart data preparation - optimized without debug logs
 
   const totalIssues = animatedData.error + animatedData.warning + animatedData.info;
   const hasIssues = totalIssues > 0;
