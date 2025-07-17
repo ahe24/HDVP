@@ -1,0 +1,7 @@
+{
+        "host_ip": "192.168.10.128",
+        "backend_port": "3001",
+        "frontend_port": "3000",
+        "timestamp": "2025-07-07T11:22:51+09:00",
+        "node_env": "development"
+    }

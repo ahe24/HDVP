@@ -1,0 +1,99 @@
+# vsim -c opt "+define+SIMULATION" "+define+DEPT=10" -l vsim.result -do "run -all; quit -f;exit 0" 
+# Start time: 10:29:30 on Jun 04,2025
+# //  Questa Sim-64
+# //  Version 2024.3_2 linux_x86_64 Nov 25 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.top_temp(fast)
+# Loading work.temp_analyzer(fast)
+# Loading work.fsm_controller(fast)
+# Loading work.led_controller(fast)
+# run -all
+#  ====================================================================== 
+#                   45	 Setting temperature to          -5 degC (0xfb)
+#  ---------------------------------------------------------------------- 
+#                   55	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                   55	 [TC-HLR-001] => PASS : all_states_reachable
+#                   55	 [TC-HLR-007] => PASS : idle_state_rules
+#                   65	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                   65	 [TC-HLR-007] => PASS : idle_state_rules
+#                   75	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                   75	 [TC-HLR-007] => PASS : idle_state_rules
+#                   85	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                   85	 [TC-HLR-007] => PASS : idle_state_rules
+#                   95	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                   95	 [TC-HLR-007] => PASS : idle_state_rules
+#  ====================================================================== 
+#                  105	 Setting temperature to          30 degC (0x1e)
+#  ---------------------------------------------------------------------- 
+#                  105	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  105	 [TC-HLR-007] => PASS : idle_state_rules
+#                  115	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  115	 [TC-HLR-007] => PASS : idle_state_rules
+#                  125	 [TC-HLR-002] => FAIL : fsm_transition_stable
+#                  125	 [TC-HLR-007] => PASS : idle_state_rules
+#                  135	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  135	 [TC-HLR-007] => PASS : idle_state_rules
+#                  145	 [TC-HLR-003] => PASS : led_state_valid
+#                  155	 [TC-HLR-002] => PASS : fsm_transition_stable
+#  ====================================================================== 
+#                  165	 Setting temperature to          90 degC (0x5a)
+#  ---------------------------------------------------------------------- 
+#                  165	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  175	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  185	 [TC-HLR-002] => FAIL : fsm_transition_stable
+#                  195	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  205	 [TC-HLR-003] => PASS : led_state_valid
+#                  215	 [TC-HLR-002] => PASS : fsm_transition_stable
+#  ====================================================================== 
+#                  225	 Setting temperature to        -101 degC (0x9b)
+#  ---------------------------------------------------------------------- 
+#                  225	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  235	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  245	 [TC-HLR-002] => FAIL : fsm_transition_stable
+#                  255	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  265	 [TC-HLR-003] => PASS : led_state_valid
+#                  275	 [TC-HLR-002] => PASS : fsm_transition_stable
+#  ====================================================================== 
+#                  295	 Test reset during operation
+#  ---------------------------------------------------------------------- 
+#                  355	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  355	 [TC-HLR-007] => PASS : idle_state_rules
+#                  365	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  365	 [TC-HLR-007] => PASS : idle_state_rules
+#                  375	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  375	 [TC-HLR-007] => PASS : idle_state_rules
+#                  385	 [TC-HLR-002] => PASS : fsm_transition_stable
+#                  385	 [TC-HLR-007] => PASS : idle_state_rules
+#  =========================================== 
+#  test_done = 1
+#  =========================================== 
+#  =========================================== 
+#  Functional Verification Results 
+#  =========================================== 
+#  <<< TC-HLR-001 PASS (Pass: 1)
+#  <<< TC-HLR-002 FAIL (Pass: 21, Fail: 3)
+#  <<< TC-HLR-003 PASS (Pass: 3)
+#  <<< TC-HLR-005 Not Tested
+#  <<< TC-HLR-007 PASS (Pass: 13)
+#  =========================================== 
+# End of Test..
+# ** Note: $stop    : ../tb/tb_top.sv(231)
+#    Time: 495 ns  Iteration: 0  Instance: /tb_top
+# Break at ../tb/tb_top.sv line 231
+# Stopped at ../tb/tb_top.sv line 231
+#  quit -f
+# End time: 10:29:30 on Jun 04,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

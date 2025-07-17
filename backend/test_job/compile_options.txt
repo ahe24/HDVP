@@ -1,0 +1,2 @@
++incdir+../../docs/example_user_project/src
++incdir+../../docs/example_user_project/src/include

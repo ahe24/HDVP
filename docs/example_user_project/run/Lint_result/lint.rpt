@@ -1,0 +1,213 @@
+====================================================================================================
+Lint Check Report
+Questa Lint  Version 2024.3_2 5905218 linux_x86_64 04-Dec-2024
+
+Timestamp            : Wed Jun  4 10:32:50 2025
+Description          : Report for referring checks count, check violations details, and  design information
+Design               : top_temp
+Database             : /home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/run/Lint_result/lint.db
+Design Quality Score : 95.5%
+
+Sections:
+   Section 1 : Check Summary
+   Section 2 : Check Details
+   Section 3 : Design Information
+====================================================================================================
+
+
+====================================================================================================
+Section 1 : Check Summary
+====================================================================================================
+-------------
+| Error (5) |
+-------------
+  parameter_name_duplicate (DR3_ensure_unique_name_spaces)                                                              : 4
+  undriven_unloaded_signal (SS17_avoid_undriven_and_unused_logic)                                                       : 1
+
+---------------
+| Warning (2) |
+---------------
+  flop_without_control (SS18_ensure_register_controllability)                                                           : 1
+  var_unused (CP14_avoid_unused_declarations)                                                                           : 1
+
+-------------
+| Info (34) |
+-------------
+  async_signal_name_not_standard (DR13_ensure_company_specific_naming_standards)                                        : 2
+  constant_literal (CP3_avoid_hard_coded_numeric_values,CP4_avoid_hard_coded_vector_assignments)                        : 2
+  input_port_name_not_standard (DR13_ensure_company_specific_naming_standards)                                          : 11
+  output_port_name_not_standard (DR13_ensure_company_specific_naming_standards)                                         : 9
+  module_inst_name_mismatch (DR13_ensure_company_specific_naming_standards)                                             : 3
+  reg_name_not_standard (DR13_ensure_company_specific_naming_standards)                                                 : 5
+  reset_name_not_standard (DR13_ensure_company_specific_naming_standards)                                               : 2
+
+----------------
+| Resolved (0) |
+----------------
+
+
+====================================================================================================
+Section 2 : Check Details
+====================================================================================================
+-------------
+| Error (5) |
+-------------
+
+Check: parameter_name_duplicate [Category: Nomenclature Style] [Alias: DR3_ensure_unique_name_spaces] (4)
+       [Message: Same parameter name is used in more than one module. Parameter '<parameter>', Total count '<count>', First module: Module '<module1>', File '<file1>', Line '<line1>', Second module: Module '<module2>', File '<file2>', Line '<line2>']
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+parameter_name_duplicate: [uninspected] Same parameter name is used in more than one module. Parameter 'IDLE', Total count '3', First module: Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '29', Second module: Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '39' [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR3_ensure_unique_name_spaces]
+
+parameter_name_duplicate: [uninspected] Same parameter name is used in more than one module. Parameter 'NORMAL', Total count '3', First module: Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '30', Second module: Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '40' [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR3_ensure_unique_name_spaces]
+
+parameter_name_duplicate: [uninspected] Same parameter name is used in more than one module. Parameter 'WARNING', Total count '3', First module: Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '31', Second module: Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '41' [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR3_ensure_unique_name_spaces]
+
+parameter_name_duplicate: [uninspected] Same parameter name is used in more than one module. Parameter 'FAULT', Total count '3', First module: Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '32', Second module: Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '42' [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR3_ensure_unique_name_spaces]
+
+
+Check: undriven_unloaded_signal [Category: Connectivity] [Alias: SS17_avoid_undriven_and_unused_logic] (1)
+       [Message: Internal net is undriven and drives no logic. Signal '<signal>', Module '<module>', File '<file>', Line '<line>'.]
+------------------------------------------------------------------------------------------------------------------------------------
+undriven_unloaded_signal: [uninspected] Internal net is undriven and drives no logic. Signal 'blink_flag', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '45'. [Example Hierarchy:top_temp.u_led_controller] [Alias: SS17_avoid_undriven_and_unused_logic]
+
+
+
+---------------
+| Warning (2) |
+---------------
+
+Check: flop_without_control [Category: Reset] [Alias: SS18_ensure_register_controllability] (1)
+       [Message: Flip-flop does not have any valid control. Valid control(s) '<type>', Signal '<signal>', Module '<module>', File '<file>', Line '<line>'.]
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+flop_without_control: [uninspected] Flip-flop does not have any valid control. Valid control(s) 'async_reset, enable, sync_reset', Signal 'u_temp_analyzer.temp_state', Module 'temp_analyzer', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/temp_analyzer.v', Line '75'. [Example Hierarchy:top_temp.u_temp_analyzer] [Alias: SS18_ensure_register_controllability]
+
+
+Check: var_unused [Category: Rtl Design Style] [Alias: CP14_avoid_unused_declarations] (1)
+       [Message: Variable is not used. Signal '<signal>', Module '<module>', File '<file>', Line '<line>'.]
+------------------------------------------------------------------------------------------------------------
+var_unused: [uninspected] Variable is not used. Signal 'blink_flag', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '45'. [Example Hierarchy:top_temp.u_led_controller] [Alias: CP14_avoid_unused_declarations]
+
+
+
+-------------
+| Info (34) |
+-------------
+
+Check: async_signal_name_not_standard [Category: Nomenclature Style] [Alias: DR13_ensure_company_specific_naming_standards] (2)
+       [Message: Asynchronous signal name does not follow standard naming rules. Signal '<signal>', Reason '<reason>', Module '<module>', File '<file>', Line '<line>'.]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+async_signal_name_not_standard: [uninspected] Asynchronous signal name does not follow standard naming rules. Signal 'reset', Reason 'Missing suffix: _a', Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '23'. [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+async_signal_name_not_standard: [uninspected] Asynchronous signal name does not follow standard naming rules. Signal 'reset', Reason 'Missing suffix: _a', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '31'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+
+Check: constant_literal [Category: Rtl Design Style] [Alias: CP3_avoid_hard_coded_numeric_values,CP4_avoid_hard_coded_vector_assignments] (2)
+       [Message: Constant literal used instead of constant. Constant literal '<literal>', Module '<module>', File '<file>', Line '<line>'.]
+--------------------------------------------------------------------------------------------------------------------------------------------
+constant_literal: [uninspected] Constant literal used instead of constant. Constant literal '7', Module 'temp_analyzer', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/temp_analyzer.v', Line '32'. [Example Hierarchy:top_temp.u_temp_analyzer] [Alias: CP3_avoid_hard_coded_numeric_values,CP4_avoid_hard_coded_vector_assignments]
+    10 more occurrences at: line 33, line 34, line 35, line 36, line 37, line 38, line 39, line 40, line 41, and line 43.
+
+constant_literal: [uninspected] Constant literal used instead of constant. Constant literal '7', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '26'. [Example Hierarchy:top_temp] [Alias: CP3_avoid_hard_coded_numeric_values,CP4_avoid_hard_coded_vector_assignments]
+
+
+Check: input_port_name_not_standard [Category: Nomenclature Style] [Alias: DR13_ensure_company_specific_naming_standards] (11)
+       [Message: Input port name does not follow standard naming rules. Port '<port>', Reason '<reason>', Module '<module>', File '<file>', Line '<line>'.]
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'clk', Reason 'Missing suffix: _i', Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '22'. [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'reset', Reason 'Missing suffix: _i', Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '23'. [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'temp_state', Reason 'Missing suffix: _i', Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '24'. [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'clk', Reason 'Missing suffix: _i', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '30'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'reset', Reason 'Missing suffix: _i', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '31'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'system_state', Reason 'Missing suffix: _i', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '32'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'temp_data', Reason 'Missing suffix: _i', Module 'temp_analyzer', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/temp_analyzer.v', Line '43'. [Example Hierarchy:top_temp.u_temp_analyzer] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'clk', Reason 'Missing suffix: _i', Module 'temp_analyzer', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/temp_analyzer.v', Line '44'. [Example Hierarchy:top_temp.u_temp_analyzer] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'clk', Reason 'Missing suffix: _i', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '24'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'reset', Reason 'Missing suffix: _i', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '25'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+input_port_name_not_standard: [uninspected] Input port name does not follow standard naming rules. Port 'temp_data', Reason 'Missing suffix: _i', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '26'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+
+Check: output_port_name_not_standard [Category: Nomenclature Style] [Alias: DR13_ensure_company_specific_naming_standards] (9)
+       [Message: Output port name does not follow standard naming rules. Port '<port>', Reason '<reason>', Module '<module>', File '<file>', Line '<line>'.]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'system_state', Reason 'Missing suffix: _o', Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '25'. [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'norm_led', Reason 'Missing suffix: _o', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '33'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'warn_led', Reason 'Missing suffix: _o', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '34'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'falt_led', Reason 'Missing suffix: _o', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '35'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'temp_state', Reason 'Missing suffix: _o', Module 'temp_analyzer', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/temp_analyzer.v', Line '45'. [Example Hierarchy:top_temp.u_temp_analyzer] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'norm_led', Reason 'Missing suffix: _o', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '27'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'warn_led', Reason 'Missing suffix: _o', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '28'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'falt_led', Reason 'Missing suffix: _o', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '29'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+output_port_name_not_standard: [uninspected] Output port name does not follow standard naming rules. Port 'system_state', Reason 'Missing suffix: _o', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '30'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+
+Check: module_inst_name_mismatch [Category: Nomenclature Style] [Alias: DR13_ensure_company_specific_naming_standards] (3)
+       [Message: Name of the instance does not follow naming convention. Instance '<instance>', Master module '<master_module>', Module '<module>', File '<file>', Line '<line>'.]
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+module_inst_name_mismatch: [uninspected] Name of the instance does not follow naming convention. Instance 'u_temp_analyzer', Master module 'temp_analyzer', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '37'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+module_inst_name_mismatch: [uninspected] Name of the instance does not follow naming convention. Instance 'u_fsm_controller', Master module 'fsm_controller', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '44'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+module_inst_name_mismatch: [uninspected] Name of the instance does not follow naming convention. Instance 'u_led_controller', Master module 'led_controller', Module 'top_temp', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/top_temp.v', Line '52'. [Example Hierarchy:top_temp] [Alias: DR13_ensure_company_specific_naming_standards]
+
+
+Check: reg_name_not_standard [Category: Nomenclature Style] [Alias: DR13_ensure_company_specific_naming_standards] (5)
+       [Message: Register name does not follow standard naming rules. Signal '<signal>', Reason '<reason>', Module '<module>', File '<file>', Line '<line>'.]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+reg_name_not_standard: [uninspected] Register name does not follow standard naming rules. Signal 'system_state', Reason 'Missing suffix: _reg | _R | _r', Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '41'. [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+reg_name_not_standard: [uninspected] Register name does not follow standard naming rules. Signal 'norm_led', Reason 'Missing suffix: _reg | _R | _r', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '57'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+reg_name_not_standard: [uninspected] Register name does not follow standard naming rules. Signal 'warn_led', Reason 'Missing suffix: _reg | _R | _r', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '58'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+reg_name_not_standard: [uninspected] Register name does not follow standard naming rules. Signal 'falt_led', Reason 'Missing suffix: _reg | _R | _r', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '59'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+reg_name_not_standard: [uninspected] Register name does not follow standard naming rules. Signal 'temp_state', Reason 'Missing suffix: _reg | _R | _r', Module 'temp_analyzer', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/temp_analyzer.v', Line '75'. [Example Hierarchy:top_temp.u_temp_analyzer] [Alias: DR13_ensure_company_specific_naming_standards]
+
+
+Check: reset_name_not_standard [Category: Nomenclature Style] [Alias: DR13_ensure_company_specific_naming_standards] (2)
+       [Message: Reset signal name does not follow naming standards. Reason '<reason>', Reset '<reset>', Module '<module>', File '<file>', Line '<line>'.]
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+reset_name_not_standard: [uninspected] Reset signal name does not follow naming standards. Reason 'Missing prefix: rst', Reset 'reset', Module 'fsm_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/fsm_controller.v', Line '37'. [Example Hierarchy:top_temp.u_fsm_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+reset_name_not_standard: [uninspected] Reset signal name does not follow naming standards. Reason 'Missing prefix: rst', Reset 'reset', Module 'led_controller', File '/home/csjo/a1_wind/Questa_Web_System/docs/example_user_project/src/led_controller.v', Line '48'. [Example Hierarchy:top_temp.u_led_controller] [Alias: DR13_ensure_company_specific_naming_standards]
+
+
+
+----------------
+| Resolved (0) |
+----------------
+
+
+
+====================================================================================================
+Section 3 : Design Information
+====================================================================================================
+-----------
+| Summary |
+-----------
+  Register Bits                           : 7
+  Latch Bits                              : 0
+  User-specified Blackboxes               : 0
+  Inferred Blackboxes                     : 0
+  Empty Modules                           : 0
+  Unresolved Modules                      : 0
+  Hierarchical IPs                        : 0
+

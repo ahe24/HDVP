@@ -1,0 +1,520 @@
+====================================================================================================
+Lint Settings Report
+Questa Lint  Version 2024.3_2 5905218 linux_x86_64 04-Dec-2024
+
+Timestamp            : Wed Jun  4 10:32:50 2025
+Description          : Report describing the configuration for the lint run
+
+Sections:
+   Section 1 : Methodology and Checks
+   Section 2 : Directives
+   Section 3 : RTL Pragmas
+   Section 4 : Wild Card Expansion for Hier IP Directives
+====================================================================================================
+
+
+====================================================================================================
+Section 1 : Methodology and Checks
+====================================================================================================
+ Methodology     : standard
+ Goal(s)         : do-254(do-254)
+ Checks enabled  : 150
+
+  1.1 Checks enabled in Methodology
+  ---------------------------------------------
+  always_has_multiple_events (SS24_unsynthesizable_event_controls)
+  always_has_nested_event_control (SS24_unsynthesizable_event_controls)
+  always_without_event (SS24_unsynthesizable_event_controls)
+  architecture_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  assign_width_overflow (CP7_avoid_mismatching_ranges)
+  assign_width_underflow (CP7_avoid_mismatching_ranges)
+  assigns_mixed (CP18_mixed_blocking_nonblocking)
+  async_block_top_stmt_not_if (SS22_async_top_statement_not_if)
+  async_control_is_internal (SS12_avoid_internally_generated_resets)
+  async_signal_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  bit_order_reversed (SS21_ensure_consistent_vector_order)
+  blocking_assign_in_seq_block (CP17_assignment_style_verilog_sequential_blocks)
+  bus_conn_to_inst_reversed (SS21_ensure_consistent_vector_order)
+  case_default_missing (SS2_ensure_proper_case_statement_specification)
+  case_default_not_last_item (SS2_ensure_proper_case_statement_specification)
+  case_item_duplicate (SS2_ensure_proper_case_statement_specification)
+  case_item_invalid (SS2_ensure_proper_case_statement_specification)
+  case_others_null (SS2_ensure_proper_case_statement_specification)
+  case_with_x_z (SS2_ensure_proper_case_statement_specification)
+  clock_gated (SS10_avoid_gated_clocks)
+  clock_internal (SS11_avoid_internally_generated_clocks)
+  clock_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  clock_signal_as_non_clock (SS8_SS9_avoid_clock_used_as_non_clock)
+  combo_loop (SS3_avoid_combinational_feedback)
+  combo_loop_with_latch (SS3_avoid_combinational_feedback)
+  comment_density_low (DR11_ensure_sufficient_comment_density)
+  comparison_width_mismatch (CP7_avoid_mismatching_ranges)
+  concurrent_block_with_duplicate_assign (CP2_avoid_duplicate_signal_assignments)
+  conditional_operator_nested (SS20_ensure_nesting_limits)
+  const_latch_data (SS18_ensure_register_controllability)
+  const_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  const_reg_clock (SS18_ensure_register_controllability)
+  const_reg_data (SS18_ensure_register_controllability)
+  constant_literal (CP3_avoid_hard_coded_numeric_values,CP4_avoid_hard_coded_vector_assignments)
+  construct_comment_missing (DR12_ensure_proper_placement_of_comments)
+  data_type_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  decl_comment_missing (DR12_ensure_proper_placement_of_comments)
+  design_element_has_std_word (DR3_ensure_unique_name_spaces)
+  design_file_line_limit (DR8_avoid_large_design_files)
+  design_unit_name_similar (DR3_ensure_unique_name_spaces)
+  enable_signal_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  entity_component_name_mismatch (DR13_ensure_company_specific_naming_standards)
+  enum_decl_info_missing (CP13_declare_objects_before_use)
+  expr_operands_width_mismatch (CP7_avoid_mismatching_ranges)
+  feedthrough_path (SS1_avoid_implied_logic)
+  file_extension_not_standard
+  file_func_name_mismatch
+  file_module_name_mismatch (DR13_ensure_company_specific_naming_standards)
+  file_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  flop_async_reset_const (SS14_avoid_non_resettable_registers)
+  flop_output_in_initial (SS16_avoid_initialization_assignments)
+  flop_without_control (SS18_ensure_register_controllability)
+  fsm_state_value_hardcoded (CP5_ensure_consistent_fsm_state_encoding_style)
+  fsm_with_deadend_state (CP6_ensure_safe_fsm_transitions)
+  fsm_with_unreachable_state (CP6_ensure_safe_fsm_transitions)
+  fsm_without_default_state (CP6_ensure_safe_fsm_transitions)
+  fsm_without_reset_state (CP6_ensure_safe_fsm_transitions)
+  func_input_unused (CP14_avoid_unused_declarations)
+  func_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  func_return_before_last_stmt (CP9_ensure_proper_sub_program_body)
+  func_sets_global_var (CP9_ensure_proper_sub_program_body)
+  func_uses_global_var (CP9_ensure_proper_sub_program_body)
+  gen_inst_label_duplicate (DR3_ensure_unique_name_spaces)
+  generic_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  genvar_unused (SS17_avoid_undriven_and_unused_logic)
+  header_field_author_invalid (DR10_ensure_consistent_file_header)
+  header_field_copyright_invalid (DR10_ensure_consistent_file_header)
+  header_field_date_invalid (DR10_ensure_consistent_file_header)
+  header_field_description_invalid (DR10_ensure_consistent_file_header)
+  header_field_file_invalid (DR10_ensure_consistent_file_header)
+  header_field_revision_invalid (DR10_ensure_consistent_file_header)
+  header_missing (DR10_ensure_consistent_file_header)
+  identifier_name_not_unique (DR3_ensure_unique_name_spaces)
+  if_else_nested_large (SS20_ensure_nesting_limits)
+  inout_port_unused (CP14_avoid_unused_declarations)
+  input_port_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  inst_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  inst_port_signal_name_mismatch (DR9_ensure_consistent_signal_names_across_hierarchy)
+  label_name_not_standard (DR1_use_statement_labels,DR13_ensure_company_specific_naming_standards)
+  latch_combo_mixed (CP16_assignment_style_ensure_pure_combo_blocks)
+  latch_inferred (SS4_avoid_latch_inference)
+  lib_cell_name_as_mod_inst (DR3_ensure_unique_name_spaces)
+  line_with_multi_decls (DR4_use_separate_declaration_line_style)
+  line_with_multi_stmts (DR5_use_separate_statement_line_style)
+  long_combinational_path (SS19_avoid_long_combo_path)
+  loop_without_break (SS24_unsynthesizable_event_controls)
+  module_inst_name_mismatch (DR13_ensure_company_specific_naming_standards)
+  module_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  module_with_duplicate_ports (DR3_ensure_unique_name_spaces)
+  multi_driven_signal (SS6_avoid_multiple_drivers)
+  multi_wave_element (SS5_avoid_multiple_waveforms)
+  nonblocking_assign_and_delay_in_always (CP15_nonblocking_assign_combo_block)
+  nonblocking_assign_in_combo_block (CP15_nonblocking_assign_combo_block)
+  output_port_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  package_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  parameter_name_duplicate (DR3_ensure_unique_name_spaces)
+  parameter_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  port_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  procedure_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  procedure_sets_global_var (CP9_ensure_proper_sub_program_body)
+  procedure_uses_global_var (CP9_ensure_proper_sub_program_body)
+  process_without_event (SS24_unsynthesizable_event_controls)
+  reg_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  reserved_keyword (DR13_ensure_company_specific_naming_standards)
+  reset_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  reset_polarity_mismatch (SS13_avoid_mixed_polarity_reset)
+  reset_set_with_both_polarity (SS13_avoid_mixed_polarity_reset)
+  sensitivity_list_var_bit_unused (CP14_avoid_unused_declarations)
+  sensitivity_list_var_both_edges (SS24_unsynthesizable_event_controls)
+  sensitivity_list_var_missing (CP8_ensure_complete_sensitivity_list)
+  sensitivity_list_var_unused (CP14_avoid_unused_declarations)
+  seq_block_has_duplicate_assign (CP2_avoid_duplicate_signal_assignments)
+  signal_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  signal_sync_async (SS13_avoid_mixed_polarity_reset)
+  state_name_not_unique (DR3_ensure_unique_name_spaces)
+  subprogram_unused (SS17_avoid_undriven_and_unused_logic)
+  subroutines_recursive_loop (CP9_ensure_proper_sub_program_body)
+  task_has_event (SS24_unsynthesizable_event_controls)
+  task_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  task_sets_global_var (CP9_ensure_proper_sub_program_body)
+  task_uses_global_var (CP9_ensure_proper_sub_program_body)
+  testbench_suffix_not_standard (DR13_ensure_company_specific_naming_standards)
+  tristate_inferred (SS1_avoid_implied_logic)
+  tristate_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  tristate_not_at_top_level (SS1_avoid_implied_logic)
+  udp_name_not_standard (DR13_ensure_company_specific_naming_standards)
+  unconnected_inst (SS17_avoid_undriven_and_unused_logic)
+  unconnected_inst_input (SS17_avoid_undriven_and_unused_logic)
+  unconnected_inst_output (SS17_avoid_undriven_and_unused_logic)
+  undriven_latch_data (SS17_avoid_undriven_and_unused_logic)
+  undriven_latch_enable (SS17_avoid_undriven_and_unused_logic)
+  undriven_output_port (CP12_avoid_unconnected_output_ports)
+  undriven_reg_clock (SS18_ensure_register_controllability)
+  undriven_reg_data (SS17_avoid_undriven_and_unused_logic)
+  undriven_signal (SS17_avoid_undriven_and_unused_logic)
+  undriven_unloaded_signal (SS17_avoid_undriven_and_unused_logic)
+  unloaded_input_port (CP11_avoid_unconnected_input_ports)
+  unsynth_deferred_const (SS7_avoid_uninitialized_vhdl_deferred_constants)
+  unsynth_initial_value (SS16_avoid_initialization_assignments)
+  unsynth_repeat_in_nonblocking_assign (SS24_unsynthesizable_event_controls)
+  unsynth_type_declaration_incomplete (CP13_declare_objects_before_use)
+  var_assign_without_deassign (SS23_continuous_assignments)
+  var_forced_without_release (SS23_continuous_assignments)
+  var_name_duplicate (DR3_ensure_unique_name_spaces)
+  var_read_before_set (CP10_assign_value_before_using)
+  var_read_not_set (CP10_assign_value_before_using)
+  var_unused (CP14_avoid_unused_declarations)
+
+
+  1.2 Checks enabled through directives
+  ---------------------------------------------
+  <none>
+
+  1.3 Checks disabled through directives
+  ---------------------------------------------
+  <none>
+
+  1.4 Setup Checks
+  ---------------------------------------------
+  library_excluded
+  package_excluded
+  violations_suppressed
+
+
+====================================================================================================
+Section 2 : Directives
+====================================================================================================
+
+  lint_preference directive
+  ---------------------------------------------
+  lint preference -count_file_header -disallow_empty_loops -label_construct generate_loop generate_case generate_if -missing_others_or_default -report_constant_name_duplicate -report_string_literals 
+
+
+  lint_preference_limit directive
+  ---------------------------------------------
+  lint preference limit -comment_density_formula 1 -if_else_nest 4 -max_file_lines 2500 -min_comment_density 10 -modules_count 7 
+
+
+  lint_preference_connection directive
+  ---------------------------------------------
+  lint preference connection -disallow_port_concat -full_bus_connection 
+
+
+  lint_preference_name directive
+  ---------------------------------------------
+  lint preference name -check label_name_not_standard -prefix G 
+
+
+  lint_preference_comment directive
+  ---------------------------------------------
+  lint preference comment -author .* -copyright .* -date .* -description .* -file .* -revision .* 
+
+
+  lint_report_check directive
+  ---------------------------------------------
+  lint report check -alias SS24_unsynthesizable_event_controls always_has_multiple_events [standard/do-254.goal:725]
+  lint report check -alias SS24_unsynthesizable_event_controls always_has_nested_event_control [standard/do-254.goal:726]
+  lint report check -alias SS24_unsynthesizable_event_controls always_without_event [standard/do-254.goal:727]
+  lint report check -alias DR13_ensure_company_specific_naming_standards architecture_name_not_standard [standard/do-254.goal:728]
+  lint report check -alias CP7_avoid_mismatching_ranges assign_width_overflow [standard/do-254.goal:729]
+  lint report check -alias CP7_avoid_mismatching_ranges assign_width_underflow [standard/do-254.goal:730]
+  lint report check -alias CP18_mixed_blocking_nonblocking assigns_mixed [standard/do-254.goal:731]
+  lint report check -alias SS22_async_top_statement_not_if async_block_top_stmt_not_if [standard/do-254.goal:732]
+  lint report check -alias SS12_avoid_internally_generated_resets async_control_is_internal [standard/do-254.goal:733]
+  lint report check -alias DR13_ensure_company_specific_naming_standards async_signal_name_not_standard [standard/do-254.goal:734]
+  lint report check -alias SS21_ensure_consistent_vector_order bit_order_reversed [standard/do-254.goal:735]
+  lint report check -alias CP17_assignment_style_verilog_sequential_blocks blocking_assign_in_seq_block [standard/do-254.goal:736]
+  lint report check -alias SS21_ensure_consistent_vector_order bus_conn_to_inst_reversed [standard/do-254.goal:737]
+  lint report check -alias SS2_ensure_proper_case_statement_specification case_default_missing [standard/do-254.goal:738]
+  lint report check -alias SS2_ensure_proper_case_statement_specification case_default_not_last_item [standard/do-254.goal:739]
+  lint report check -alias SS2_ensure_proper_case_statement_specification case_item_duplicate [standard/do-254.goal:740]
+  lint report check -alias SS2_ensure_proper_case_statement_specification case_item_invalid [standard/do-254.goal:741]
+  lint report check -alias SS2_ensure_proper_case_statement_specification case_others_null [standard/do-254.goal:742]
+  lint report check -alias SS2_ensure_proper_case_statement_specification case_with_x_z [standard/do-254.goal:743]
+  lint report check -alias SS10_avoid_gated_clocks clock_gated [standard/do-254.goal:744]
+  lint report check -alias SS11_avoid_internally_generated_clocks clock_internal [standard/do-254.goal:745]
+  lint report check -alias DR13_ensure_company_specific_naming_standards clock_name_not_standard [standard/do-254.goal:746]
+  lint report check -alias SS8_SS9_avoid_clock_used_as_non_clock clock_signal_as_non_clock [standard/do-254.goal:747]
+  lint report check -alias SS3_avoid_combinational_feedback combo_loop [standard/do-254.goal:748]
+  lint report check -alias SS3_avoid_combinational_feedback combo_loop_with_latch [standard/do-254.goal:749]
+  lint report check -alias DR11_ensure_sufficient_comment_density comment_density_low [standard/do-254.goal:750]
+  lint report check -alias CP7_avoid_mismatching_ranges comparison_width_mismatch [standard/do-254.goal:751]
+  lint report check -alias CP2_avoid_duplicate_signal_assignments concurrent_block_with_duplicate_assign [standard/do-254.goal:752]
+  lint report check -alias SS20_ensure_nesting_limits conditional_operator_nested [standard/do-254.goal:753]
+  lint report check -alias SS18_ensure_register_controllability const_latch_data [standard/do-254.goal:754]
+  lint report check -alias DR13_ensure_company_specific_naming_standards const_name_not_standard [standard/do-254.goal:755]
+  lint report check -alias SS18_ensure_register_controllability const_reg_clock [standard/do-254.goal:756]
+  lint report check -alias SS18_ensure_register_controllability const_reg_data [standard/do-254.goal:757]
+  lint report check -alias CP3_avoid_hard_coded_numeric_values,CP4_avoid_hard_coded_vector_assignments constant_literal [standard/do-254.goal:758]
+  lint report check -alias DR12_ensure_proper_placement_of_comments construct_comment_missing [standard/do-254.goal:759]
+  lint report check -alias DR13_ensure_company_specific_naming_standards data_type_name_not_standard [standard/do-254.goal:760]
+  lint report check -alias DR12_ensure_proper_placement_of_comments decl_comment_missing [standard/do-254.goal:761]
+  lint report check -alias DR3_ensure_unique_name_spaces design_element_has_std_word [standard/do-254.goal:762]
+  lint report check -alias DR8_avoid_large_design_files design_file_line_limit [standard/do-254.goal:763]
+  lint report check -alias DR3_ensure_unique_name_spaces design_unit_name_similar [standard/do-254.goal:764]
+  lint report check -alias DR13_ensure_company_specific_naming_standards enable_signal_name_not_standard [standard/do-254.goal:765]
+  lint report check -alias DR13_ensure_company_specific_naming_standards entity_component_name_mismatch [standard/do-254.goal:766]
+  lint report check -alias CP13_declare_objects_before_use enum_decl_info_missing [standard/do-254.goal:767]
+  lint report check -alias CP7_avoid_mismatching_ranges expr_operands_width_mismatch [standard/do-254.goal:768]
+  lint report check -alias SS1_avoid_implied_logic feedthrough_path [standard/do-254.goal:769]
+  lint report check -alias DR13_ensure_company_specific_naming_standards file_module_name_mismatch [standard/do-254.goal:770]
+  lint report check -alias DR13_ensure_company_specific_naming_standards file_name_not_standard [standard/do-254.goal:771]
+  lint report check -alias SS14_avoid_non_resettable_registers flop_async_reset_const [standard/do-254.goal:772]
+  lint report check -alias SS16_avoid_initialization_assignments flop_output_in_initial [standard/do-254.goal:773]
+  lint report check -alias SS18_ensure_register_controllability flop_without_control [standard/do-254.goal:774]
+  lint report check -alias CP5_ensure_consistent_fsm_state_encoding_style fsm_state_value_hardcoded [standard/do-254.goal:775]
+  lint report check -alias CP6_ensure_safe_fsm_transitions fsm_with_deadend_state [standard/do-254.goal:776]
+  lint report check -alias CP6_ensure_safe_fsm_transitions fsm_with_unreachable_state [standard/do-254.goal:777]
+  lint report check -alias CP6_ensure_safe_fsm_transitions fsm_without_default_state [standard/do-254.goal:778]
+  lint report check -alias CP6_ensure_safe_fsm_transitions fsm_without_reset_state [standard/do-254.goal:779]
+  lint report check -alias CP14_avoid_unused_declarations func_input_unused [standard/do-254.goal:780]
+  lint report check -alias DR13_ensure_company_specific_naming_standards func_name_not_standard [standard/do-254.goal:781]
+  lint report check -alias CP9_ensure_proper_sub_program_body func_return_before_last_stmt [standard/do-254.goal:782]
+  lint report check -alias CP9_ensure_proper_sub_program_body func_sets_global_var [standard/do-254.goal:783]
+  lint report check -alias CP9_ensure_proper_sub_program_body func_uses_global_var [standard/do-254.goal:784]
+  lint report check -alias DR3_ensure_unique_name_spaces gen_inst_label_duplicate [standard/do-254.goal:785]
+  lint report check -alias DR13_ensure_company_specific_naming_standards generic_name_not_standard [standard/do-254.goal:786]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic genvar_unused [standard/do-254.goal:787]
+  lint report check -alias DR10_ensure_consistent_file_header header_field_author_invalid [standard/do-254.goal:788]
+  lint report check -alias DR10_ensure_consistent_file_header header_field_copyright_invalid [standard/do-254.goal:789]
+  lint report check -alias DR10_ensure_consistent_file_header header_field_date_invalid [standard/do-254.goal:790]
+  lint report check -alias DR10_ensure_consistent_file_header header_field_description_invalid [standard/do-254.goal:791]
+  lint report check -alias DR10_ensure_consistent_file_header header_field_file_invalid [standard/do-254.goal:792]
+  lint report check -alias DR10_ensure_consistent_file_header header_field_revision_invalid [standard/do-254.goal:793]
+  lint report check -alias DR10_ensure_consistent_file_header header_missing [standard/do-254.goal:794]
+  lint report check -alias DR3_ensure_unique_name_spaces identifier_name_not_unique [standard/do-254.goal:795]
+  lint report check -alias SS20_ensure_nesting_limits if_else_nested_large [standard/do-254.goal:796]
+  lint report check -alias CP14_avoid_unused_declarations inout_port_unused [standard/do-254.goal:797]
+  lint report check -alias DR13_ensure_company_specific_naming_standards input_port_name_not_standard [standard/do-254.goal:798]
+  lint report check -alias DR13_ensure_company_specific_naming_standards inst_name_not_standard [standard/do-254.goal:799]
+  lint report check -alias DR9_ensure_consistent_signal_names_across_hierarchy inst_port_signal_name_mismatch [standard/do-254.goal:800]
+  lint report check -alias DR1_use_statement_labels,DR13_ensure_company_specific_naming_standards label_name_not_standard [standard/do-254.goal:801]
+  lint report check -alias CP16_assignment_style_ensure_pure_combo_blocks latch_combo_mixed [standard/do-254.goal:802]
+  lint report check -alias SS4_avoid_latch_inference latch_inferred [standard/do-254.goal:803]
+  lint report check -alias DR3_ensure_unique_name_spaces lib_cell_name_as_mod_inst [standard/do-254.goal:804]
+  lint report check -alias DR4_use_separate_declaration_line_style line_with_multi_decls [standard/do-254.goal:805]
+  lint report check -alias DR5_use_separate_statement_line_style line_with_multi_stmts [standard/do-254.goal:806]
+  lint report check -alias SS19_avoid_long_combo_path long_combinational_path [standard/do-254.goal:807]
+  lint report check -alias SS24_unsynthesizable_event_controls loop_without_break [standard/do-254.goal:808]
+  lint report check -alias DR13_ensure_company_specific_naming_standards module_inst_name_mismatch [standard/do-254.goal:809]
+  lint report check -alias DR13_ensure_company_specific_naming_standards module_name_not_standard [standard/do-254.goal:810]
+  lint report check -alias DR3_ensure_unique_name_spaces module_with_duplicate_ports [standard/do-254.goal:811]
+  lint report check -alias SS6_avoid_multiple_drivers multi_driven_signal [standard/do-254.goal:812]
+  lint report check -alias SS5_avoid_multiple_waveforms multi_wave_element [standard/do-254.goal:813]
+  lint report check -alias CP15_nonblocking_assign_combo_block nonblocking_assign_and_delay_in_always [standard/do-254.goal:814]
+  lint report check -alias CP15_nonblocking_assign_combo_block nonblocking_assign_in_combo_block [standard/do-254.goal:815]
+  lint report check -alias DR13_ensure_company_specific_naming_standards output_port_name_not_standard [standard/do-254.goal:816]
+  lint report check -alias DR13_ensure_company_specific_naming_standards package_name_not_standard [standard/do-254.goal:817]
+  lint report check -alias DR3_ensure_unique_name_spaces parameter_name_duplicate [standard/do-254.goal:818]
+  lint report check -alias DR13_ensure_company_specific_naming_standards parameter_name_not_standard [standard/do-254.goal:819]
+  lint report check -alias DR13_ensure_company_specific_naming_standards port_name_not_standard [standard/do-254.goal:820]
+  lint report check -alias DR13_ensure_company_specific_naming_standards procedure_name_not_standard [standard/do-254.goal:821]
+  lint report check -alias CP9_ensure_proper_sub_program_body procedure_sets_global_var [standard/do-254.goal:822]
+  lint report check -alias CP9_ensure_proper_sub_program_body procedure_uses_global_var [standard/do-254.goal:823]
+  lint report check -alias SS24_unsynthesizable_event_controls process_without_event [standard/do-254.goal:824]
+  lint report check -alias DR13_ensure_company_specific_naming_standards reg_name_not_standard [standard/do-254.goal:825]
+  lint report check -alias DR13_ensure_company_specific_naming_standards reserved_keyword [standard/do-254.goal:826]
+  lint report check -alias DR13_ensure_company_specific_naming_standards reset_name_not_standard [standard/do-254.goal:827]
+  lint report check -alias SS13_avoid_mixed_polarity_reset reset_polarity_mismatch [standard/do-254.goal:828]
+  lint report check -alias SS13_avoid_mixed_polarity_reset reset_set_with_both_polarity [standard/do-254.goal:829]
+  lint report check -alias CP14_avoid_unused_declarations sensitivity_list_var_bit_unused [standard/do-254.goal:830]
+  lint report check -alias SS24_unsynthesizable_event_controls sensitivity_list_var_both_edges [standard/do-254.goal:831]
+  lint report check -alias CP8_ensure_complete_sensitivity_list sensitivity_list_var_missing [standard/do-254.goal:832]
+  lint report check -alias CP14_avoid_unused_declarations sensitivity_list_var_unused [standard/do-254.goal:833]
+  lint report check -alias CP2_avoid_duplicate_signal_assignments seq_block_has_duplicate_assign [standard/do-254.goal:834]
+  lint report check -alias DR13_ensure_company_specific_naming_standards signal_name_not_standard [standard/do-254.goal:835]
+  lint report check -alias SS13_avoid_mixed_polarity_reset signal_sync_async [standard/do-254.goal:836]
+  lint report check -alias DR3_ensure_unique_name_spaces state_name_not_unique [standard/do-254.goal:837]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic subprogram_unused [standard/do-254.goal:838]
+  lint report check -alias CP9_ensure_proper_sub_program_body subroutines_recursive_loop [standard/do-254.goal:839]
+  lint report check -alias SS24_unsynthesizable_event_controls task_has_event [standard/do-254.goal:840]
+  lint report check -alias DR13_ensure_company_specific_naming_standards task_name_not_standard [standard/do-254.goal:841]
+  lint report check -alias CP9_ensure_proper_sub_program_body task_sets_global_var [standard/do-254.goal:842]
+  lint report check -alias CP9_ensure_proper_sub_program_body task_uses_global_var [standard/do-254.goal:843]
+  lint report check -alias DR13_ensure_company_specific_naming_standards testbench_suffix_not_standard [standard/do-254.goal:844]
+  lint report check -alias SS1_avoid_implied_logic tristate_inferred [standard/do-254.goal:845]
+  lint report check -alias DR13_ensure_company_specific_naming_standards tristate_name_not_standard [standard/do-254.goal:846]
+  lint report check -alias SS1_avoid_implied_logic tristate_not_at_top_level [standard/do-254.goal:847]
+  lint report check -alias DR13_ensure_company_specific_naming_standards udp_name_not_standard [standard/do-254.goal:848]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic unconnected_inst [standard/do-254.goal:849]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic unconnected_inst_input [standard/do-254.goal:850]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic unconnected_inst_output [standard/do-254.goal:851]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic undriven_latch_data [standard/do-254.goal:852]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic undriven_latch_enable [standard/do-254.goal:853]
+  lint report check -alias CP12_avoid_unconnected_output_ports undriven_output_port [standard/do-254.goal:854]
+  lint report check -alias SS18_ensure_register_controllability undriven_reg_clock [standard/do-254.goal:855]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic undriven_reg_data [standard/do-254.goal:856]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic undriven_signal [standard/do-254.goal:857]
+  lint report check -alias SS17_avoid_undriven_and_unused_logic undriven_unloaded_signal [standard/do-254.goal:858]
+  lint report check -alias CP11_avoid_unconnected_input_ports unloaded_input_port [standard/do-254.goal:859]
+  lint report check -alias SS7_avoid_uninitialized_vhdl_deferred_constants unsynth_deferred_const [standard/do-254.goal:860]
+  lint report check -alias SS16_avoid_initialization_assignments unsynth_initial_value [standard/do-254.goal:861]
+  lint report check -alias SS24_unsynthesizable_event_controls unsynth_repeat_in_nonblocking_assign [standard/do-254.goal:862]
+  lint report check -alias CP13_declare_objects_before_use unsynth_type_declaration_incomplete [standard/do-254.goal:863]
+  lint report check -alias SS23_continuous_assignments var_assign_without_deassign [standard/do-254.goal:864]
+  lint report check -alias SS23_continuous_assignments var_forced_without_release [standard/do-254.goal:865]
+  lint report check -alias DR3_ensure_unique_name_spaces var_name_duplicate [standard/do-254.goal:866]
+  lint report check -alias CP10_assign_value_before_using var_read_before_set [standard/do-254.goal:867]
+  lint report check -alias CP10_assign_value_before_using var_read_not_set [standard/do-254.goal:868]
+  lint report check -alias CP14_avoid_unused_declarations var_unused [standard/do-254.goal:869]
+  lint report check -severity warning always_has_multiple_events [standard/do-254.goal:870]
+  lint report check -severity warning always_has_nested_event_control [standard/do-254.goal:871]
+  lint report check -severity warning always_without_event [standard/do-254.goal:872]
+  lint report check -severity info architecture_name_not_standard [standard/do-254.goal:873]
+  lint report check -severity warning assign_width_overflow [standard/do-254.goal:874]
+  lint report check -severity warning assign_width_underflow [standard/do-254.goal:875]
+  lint report check -severity warning assigns_mixed [standard/do-254.goal:876]
+  lint report check -severity warning async_block_top_stmt_not_if [standard/do-254.goal:877]
+  lint report check -severity warning async_control_is_internal [standard/do-254.goal:878]
+  lint report check -severity info async_signal_name_not_standard [standard/do-254.goal:879]
+  lint report check -severity warning bit_order_reversed [standard/do-254.goal:880]
+  lint report check -severity error blocking_assign_in_seq_block [standard/do-254.goal:881]
+  lint report check -severity warning bus_conn_to_inst_reversed [standard/do-254.goal:882]
+  lint report check -severity error case_default_missing [standard/do-254.goal:883]
+  lint report check -severity error case_default_not_last_item [standard/do-254.goal:884]
+  lint report check -severity error case_item_duplicate [standard/do-254.goal:885]
+  lint report check -severity error case_item_invalid [standard/do-254.goal:886]
+  lint report check -severity error case_others_null [standard/do-254.goal:887]
+  lint report check -severity error case_with_x_z [standard/do-254.goal:888]
+  lint report check -severity warning clock_gated [standard/do-254.goal:889]
+  lint report check -severity warning clock_internal [standard/do-254.goal:890]
+  lint report check -severity info clock_name_not_standard [standard/do-254.goal:891]
+  lint report check -severity error clock_signal_as_non_clock [standard/do-254.goal:892]
+  lint report check -severity error combo_loop [standard/do-254.goal:893]
+  lint report check -severity error combo_loop_with_latch [standard/do-254.goal:894]
+  lint report check -severity warning comment_density_low [standard/do-254.goal:895]
+  lint report check -severity warning comparison_width_mismatch [standard/do-254.goal:896]
+  lint report check -severity warning concurrent_block_with_duplicate_assign [standard/do-254.goal:897]
+  lint report check -severity warning conditional_operator_nested [standard/do-254.goal:898]
+  lint report check -severity warning const_latch_data [standard/do-254.goal:899]
+  lint report check -severity info const_name_not_standard [standard/do-254.goal:900]
+  lint report check -severity warning const_reg_clock [standard/do-254.goal:901]
+  lint report check -severity warning const_reg_data [standard/do-254.goal:902]
+  lint report check -severity info constant_literal [standard/do-254.goal:903]
+  lint report check -severity info construct_comment_missing [standard/do-254.goal:904]
+  lint report check -severity info data_type_name_not_standard [standard/do-254.goal:905]
+  lint report check -severity info decl_comment_missing [standard/do-254.goal:906]
+  lint report check -severity error design_element_has_std_word [standard/do-254.goal:907]
+  lint report check -severity warning design_file_line_limit [standard/do-254.goal:908]
+  lint report check -severity error design_unit_name_similar [standard/do-254.goal:909]
+  lint report check -severity info enable_signal_name_not_standard [standard/do-254.goal:910]
+  lint report check -severity info entity_component_name_mismatch [standard/do-254.goal:911]
+  lint report check -severity error enum_decl_info_missing [standard/do-254.goal:912]
+  lint report check -severity warning expr_operands_width_mismatch [standard/do-254.goal:913]
+  lint report check -severity warning feedthrough_path [standard/do-254.goal:914]
+  lint report check -severity info file_extension_not_standard [standard/do-254.goal:915]
+  lint report check -severity info file_func_name_mismatch [standard/do-254.goal:916]
+  lint report check -severity info file_module_name_mismatch [standard/do-254.goal:917]
+  lint report check -severity info file_name_not_standard [standard/do-254.goal:918]
+  lint report check -severity warning flop_async_reset_const [standard/do-254.goal:919]
+  lint report check -severity error flop_output_in_initial [standard/do-254.goal:920]
+  lint report check -severity warning flop_without_control [standard/do-254.goal:921]
+  lint report check -severity warning fsm_state_value_hardcoded [standard/do-254.goal:922]
+  lint report check -severity error fsm_with_deadend_state [standard/do-254.goal:923]
+  lint report check -severity error fsm_with_unreachable_state [standard/do-254.goal:924]
+  lint report check -severity warning fsm_without_default_state [standard/do-254.goal:925]
+  lint report check -severity error fsm_without_reset_state [standard/do-254.goal:926]
+  lint report check -severity warning func_input_unused [standard/do-254.goal:927]
+  lint report check -severity info func_name_not_standard [standard/do-254.goal:928]
+  lint report check -severity warning func_return_before_last_stmt [standard/do-254.goal:929]
+  lint report check -severity warning func_sets_global_var [standard/do-254.goal:930]
+  lint report check -severity warning func_uses_global_var [standard/do-254.goal:931]
+  lint report check -severity warning gen_inst_label_duplicate [standard/do-254.goal:932]
+  lint report check -severity info generic_name_not_standard [standard/do-254.goal:933]
+  lint report check -severity error genvar_unused [standard/do-254.goal:934]
+  lint report check -severity warning header_field_author_invalid [standard/do-254.goal:935]
+  lint report check -severity warning header_field_copyright_invalid [standard/do-254.goal:936]
+  lint report check -severity warning header_field_date_invalid [standard/do-254.goal:937]
+  lint report check -severity warning header_field_description_invalid [standard/do-254.goal:938]
+  lint report check -severity warning header_field_file_invalid [standard/do-254.goal:939]
+  lint report check -severity warning header_field_revision_invalid [standard/do-254.goal:940]
+  lint report check -severity warning header_missing [standard/do-254.goal:941]
+  lint report check -severity error identifier_name_not_unique [standard/do-254.goal:942]
+  lint report check -severity warning if_else_nested_large [standard/do-254.goal:943]
+  lint report check -severity warning inout_port_unused [standard/do-254.goal:944]
+  lint report check -severity info input_port_name_not_standard [standard/do-254.goal:945]
+  lint report check -severity info inst_name_not_standard [standard/do-254.goal:946]
+  lint report check -severity warning inst_port_signal_name_mismatch [standard/do-254.goal:947]
+  lint report check -severity info label_name_not_standard [standard/do-254.goal:948]
+  lint report check -severity info latch_combo_mixed [standard/do-254.goal:949]
+  lint report check -severity warning latch_inferred [standard/do-254.goal:950]
+  lint report check -severity error lib_cell_name_as_mod_inst [standard/do-254.goal:951]
+  lint report check -severity info line_with_multi_decls [standard/do-254.goal:952]
+  lint report check -severity info line_with_multi_stmts [standard/do-254.goal:953]
+  lint report check -severity warning long_combinational_path [standard/do-254.goal:954]
+  lint report check -severity warning loop_without_break [standard/do-254.goal:955]
+  lint report check -severity info module_inst_name_mismatch [standard/do-254.goal:956]
+  lint report check -severity info module_name_not_standard [standard/do-254.goal:957]
+  lint report check -severity error module_with_duplicate_ports [standard/do-254.goal:958]
+  lint report check -severity error multi_driven_signal [standard/do-254.goal:959]
+  lint report check -severity error multi_wave_element [standard/do-254.goal:960]
+  lint report check -severity error nonblocking_assign_and_delay_in_always [standard/do-254.goal:961]
+  lint report check -severity error nonblocking_assign_in_combo_block [standard/do-254.goal:962]
+  lint report check -severity info output_port_name_not_standard [standard/do-254.goal:963]
+  lint report check -severity info package_name_not_standard [standard/do-254.goal:964]
+  lint report check -severity error parameter_name_duplicate [standard/do-254.goal:965]
+  lint report check -severity info parameter_name_not_standard [standard/do-254.goal:966]
+  lint report check -severity info port_name_not_standard [standard/do-254.goal:967]
+  lint report check -severity info procedure_name_not_standard [standard/do-254.goal:968]
+  lint report check -severity warning procedure_sets_global_var [standard/do-254.goal:969]
+  lint report check -severity warning procedure_uses_global_var [standard/do-254.goal:970]
+  lint report check -severity warning process_without_event [standard/do-254.goal:971]
+  lint report check -severity info reg_name_not_standard [standard/do-254.goal:972]
+  lint report check -severity info reserved_keyword [standard/do-254.goal:973]
+  lint report check -severity info reset_name_not_standard [standard/do-254.goal:974]
+  lint report check -severity warning reset_polarity_mismatch [standard/do-254.goal:975]
+  lint report check -severity warning reset_set_with_both_polarity [standard/do-254.goal:976]
+  lint report check -severity warning sensitivity_list_var_bit_unused [standard/do-254.goal:977]
+  lint report check -severity warning sensitivity_list_var_both_edges [standard/do-254.goal:978]
+  lint report check -severity warning sensitivity_list_var_missing [standard/do-254.goal:979]
+  lint report check -severity warning sensitivity_list_var_unused [standard/do-254.goal:980]
+  lint report check -severity warning seq_block_has_duplicate_assign [standard/do-254.goal:981]
+  lint report check -severity info signal_name_not_standard [standard/do-254.goal:982]
+  lint report check -severity warning signal_sync_async [standard/do-254.goal:983]
+  lint report check -severity error state_name_not_unique [standard/do-254.goal:984]
+  lint report check -severity error subprogram_unused [standard/do-254.goal:985]
+  lint report check -severity warning subroutines_recursive_loop [standard/do-254.goal:986]
+  lint report check -severity warning task_has_event [standard/do-254.goal:987]
+  lint report check -severity info task_name_not_standard [standard/do-254.goal:988]
+  lint report check -severity warning task_sets_global_var [standard/do-254.goal:989]
+  lint report check -severity warning task_uses_global_var [standard/do-254.goal:990]
+  lint report check -severity info testbench_suffix_not_standard [standard/do-254.goal:991]
+  lint report check -severity warning tristate_inferred [standard/do-254.goal:992]
+  lint report check -severity info tristate_name_not_standard [standard/do-254.goal:993]
+  lint report check -severity warning tristate_not_at_top_level [standard/do-254.goal:994]
+  lint report check -severity info udp_name_not_standard [standard/do-254.goal:995]
+  lint report check -severity error unconnected_inst [standard/do-254.goal:996]
+  lint report check -severity error unconnected_inst_input [standard/do-254.goal:997]
+  lint report check -severity error unconnected_inst_output [standard/do-254.goal:998]
+  lint report check -severity error undriven_latch_data [standard/do-254.goal:999]
+  lint report check -severity error undriven_latch_enable [standard/do-254.goal:1000]
+  lint report check -severity info undriven_output_port [standard/do-254.goal:1001]
+  lint report check -severity warning undriven_reg_clock [standard/do-254.goal:1002]
+  lint report check -severity error undriven_reg_data [standard/do-254.goal:1003]
+  lint report check -severity error undriven_signal [standard/do-254.goal:1004]
+  lint report check -severity error undriven_unloaded_signal [standard/do-254.goal:1005]
+  lint report check -severity error unloaded_input_port [standard/do-254.goal:1006]
+  lint report check -severity warning unsynth_deferred_const [standard/do-254.goal:1007]
+  lint report check -severity error unsynth_initial_value [standard/do-254.goal:1008]
+  lint report check -severity warning unsynth_repeat_in_nonblocking_assign [standard/do-254.goal:1009]
+  lint report check -severity error unsynth_type_declaration_incomplete [standard/do-254.goal:1010]
+  lint report check -severity warning var_assign_without_deassign [standard/do-254.goal:1011]
+  lint report check -severity warning var_forced_without_release [standard/do-254.goal:1012]
+  lint report check -severity error var_name_duplicate [standard/do-254.goal:1013]
+  lint report check -severity warning var_read_before_set [standard/do-254.goal:1014]
+  lint report check -severity warning var_read_not_set [standard/do-254.goal:1015]
+  lint report check -severity warning var_unused [standard/do-254.goal:1016]
+
+
+====================================================================================================
+Section 3 : RTL Pragmas
+====================================================================================================
+
+====================================================================================================
+Section 4 : Wild Card Expansion for Hier IP Directives
+====================================================================================================

@@ -1,0 +1,43 @@
+# run_tcl_example
+
+## QuestaSim
+
+### Compile
+
+TB_NAME = tb_top
+DUT_TOP = top
+
+DEFINE_OPTS = +define+SIMULATION  +define+DEPT=10 
+INCDIR_OPTS = +incdir+./ref +incdir+./include
+
+VLOG_OPTS = -sv $(DEFINE_OPTS) $(INCDIR_OPTS) -l compile.log
+VOPT_OPTS = $(DEFINE_OPTS) -l vopt.log
+VSIM_OPTS = $(DEFINE_OPTS) -l vsim.result
+
+compile:
+	vlog $(VLOG_OPTS) -f $(FILELIST)
+
+
+### Optimization
+opt:
+	vopt $(TB_NAME) -o opt $(VOPT_OPTS)
+
+
+### Simulation
+sim:
+	vsim -c opt $(VSIM_OPTS) -do "run -all; quit -f;exit 0"
+
+
+####======================
+
+## Questa Formal Lint 
+LINT_OUT_DIR = Lint_result
+
+lint:
+	qverify -c -licq -l glint.log -od $(LINT_OUT_DIR) -do "\
+      onerror {exit 1}; \
+      lint methodology standard -goal do-254; \
+      lint run -d $(DUT_TOP); \
+      exit 0"
+
+

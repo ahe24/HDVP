@@ -1,0 +1,22 @@
+{
+  "project_path": "../docs/example_user_project",
+  "job_path": "./test_job",
+  "src_files": [
+    "../../docs/example_user_project/src/fsm_controller.v",
+    "../../docs/example_user_project/src/led_controller.v",
+    "../../docs/example_user_project/src/temp_analyzer.v",
+    "../../docs/example_user_project/src/top_temp.v"
+  ],
+  "tb_files": [
+    "../../docs/example_user_project/tb/tb_top.sv"
+  ],
+  "include_files": [
+    "../../docs/example_user_project/src/include/define.svh"
+  ],
+  "include_dirs": [
+    "../../docs/example_user_project/src/include",
+    "../../docs/example_user_project/src"
+  ],
+  "total_files": 5,
+  "generated_at": 1749190597.8869026
+}
