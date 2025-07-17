@@ -61,44 +61,21 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
     }
   }, [open, jobId, startFile.filename, endFile.filename]);
 
-  // Auto-scroll to highlighted lines when content loads (sequential)
+  // Auto-scroll to highlighted lines when content loads
   useEffect(() => {
-    console.log('Auto-scroll effect triggered:', {
-      hasStartContent: !!startContent,
-      hasEndContent: !!endContent,
-      hasStartRef: !!startCodeRef.current,
-      hasEndRef: !!endCodeRef.current,
-      startLine: startFile.lineNumber,
-      endLine: endFile.lineNumber
-    });
-    
     if (startContent && endContent && startCodeRef.current && endCodeRef.current) {
-      console.log('Starting auto-scroll sequence...');
-      
-      // No need to manage synchronized scrolling since it's disabled by default
-      
       // Wait for content to be fully rendered and DOM to be stable
       const waitForContent = () => {
         const startLines = startCodeRef.current?.querySelectorAll('.code-line');
         const endLines = endCodeRef.current?.querySelectorAll('.code-line');
-        
-        console.log('Checking content readiness:', {
-          startLinesCount: startLines?.length,
-          endLinesCount: endLines?.length,
-          startContentLength: startContent.split('\n').length,
-          endContentLength: endContent.split('\n').length
-        });
         
         // Check if all lines are rendered
         if (startLines && endLines && 
             startLines.length >= startContent.split('\n').length &&
             endLines.length >= endContent.split('\n').length) {
           
-          console.log('Content fully rendered, starting scroll...');
-          
           // Scroll start panel first
           setTimeout(() => {
-            console.log('Scrolling start panel to line', startFile.lineNumber);
             if (startCodeRef.current) {
               scrollToLine(startCodeRef.current, startFile.lineNumber);
             }
@@ -106,18 +83,13 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
           
           // Scroll end panel after delay
           setTimeout(() => {
-            console.log('Scrolling end panel to line', endFile.lineNumber);
             if (endCodeRef.current) {
               scrollToLine(endCodeRef.current, endFile.lineNumber);
             }
-            
-            // Auto-scroll complete
-            console.log('Auto-scroll sequence completed');
           }, 600);
           
         } else {
           // Content not ready, try again
-          console.log('Content not ready, retrying in 200ms...');
           setTimeout(waitForContent, 200);
         }
       };
@@ -162,10 +134,7 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
   };
 
   const scrollToLine = (element: HTMLElement, lineNumber: number) => {
-    console.log('Scrolling to line:', lineNumber, 'in element:', element);
-    
     if (!element) {
-      console.error('Element is null, cannot scroll');
       return;
     }
     
@@ -174,7 +143,6 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
     const targetLineElement = lineElements[lineNumber - 1] as HTMLElement;
     
     if (targetLineElement) {
-      console.log('Found target line element, using scrollIntoView');
       targetLineElement.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
@@ -186,7 +154,6 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
     // Fallback to manual calculation if element not found
     const attemptScroll = (attempt: number = 1) => {
       if (!element || !element.clientHeight) {
-        console.error('Element not ready for scrolling, attempt:', attempt);
         return;
       }
       
@@ -197,14 +164,7 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
       const containerHeight = element.clientHeight;
       const scrollHeight = element.scrollHeight;
       
-      console.log('Element dimensions (attempt', attempt, '):', {
-        clientHeight: containerHeight,
-        scrollHeight: scrollHeight,
-        actualLineHeight: actualLineHeight
-      });
-      
       if (scrollHeight <= containerHeight) {
-        console.log('Content fits in container, no scrolling needed');
         return;
       }
       
@@ -215,29 +175,17 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
       const maxScrollTop = scrollHeight - containerHeight;
       const finalScrollTop = Math.max(0, Math.min(targetScrollTop, maxScrollTop));
       
-      console.log('Scroll calculation (attempt', attempt, '):', {
-        actualLineHeight,
-        containerHeight,
-        targetScrollTop,
-        maxScrollTop,
-        finalScrollTop,
-        currentScrollTop: element.scrollTop
-      });
-      
       // Try immediate scroll first
       element.scrollTop = finalScrollTop;
       
       // Check if scroll was successful
       setTimeout(() => {
         const actualScrollTop = element.scrollTop;
-        console.log('Actual scroll position after attempt', attempt, ':', actualScrollTop);
         
         // If scroll didn't work and we haven't tried too many times, try again
         if (Math.abs(actualScrollTop - finalScrollTop) > 50 && attempt < 3) {
-          console.log('Scroll not accurate, retrying...');
           setTimeout(() => attemptScroll(attempt + 1), 200);
         } else if (attempt >= 3) {
-          console.log('Max attempts reached, trying smooth scroll as fallback');
           element.scrollTo({
             top: finalScrollTop,
             behavior: 'smooth'
@@ -406,10 +354,7 @@ const CDCSplitCodeViewerModal: React.FC<CDCSplitCodeViewerModalProps> = ({
                 variant="outlined"
                 startIcon={<VisibilityIcon />}
                 onClick={() => {
-                  console.log('Manual scroll button clicked');
                   if (startCodeRef.current && endCodeRef.current) {
-                    console.log('Scrolling both panels manually...');
-                    
                     scrollToLine(startCodeRef.current, startFile.lineNumber);
                     setTimeout(() => {
                       scrollToLine(endCodeRef.current!, endFile.lineNumber);

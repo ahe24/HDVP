@@ -36,16 +36,9 @@ const CDCReportViewer: React.FC<CDCReportViewerProps> = ({ jobId }) => {
       setLoading(true);
       setError(null);
       
-      console.log('🔍 Loading CDC report for jobId:', jobId);
       const response = await apiService.getCDCReport(jobId);
       
-      console.log('🔍 CDC API response:', response);
-      
       if (response.success && response.data) {
-        console.log('🔍 CDC data received:', response.data);
-        console.log('🔍 CDC violations count:', response.data.violations?.length || 0);
-        console.log('🔍 CDC cautions count:', response.data.cautions?.length || 0);
-        console.log('🔍 CDC evaluations count:', response.data.evaluations?.length || 0);
         setCdcData(response.data);
       } else {
         console.error('🔍 CDC API error:', response.error);

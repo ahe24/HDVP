@@ -58,16 +58,7 @@ const CDCDetailsSection: React.FC<CDCDetailsSectionProps> = ({
   const [selectedCDCDetail, setSelectedCDCDetail] = useState<CDCDetail | null>(null);
   const navigate = useNavigate();
 
-  // Debug logging
-  console.log('🔍 CDCDetailsSection received data:', {
-    violations: violations?.length || 0,
-    cautions: cautions?.length || 0,
-    evaluations: evaluations?.length || 0,
-    violationsData: violations,
-    cautionsData: cautions,
-    evaluationsData: evaluations,
-    expandedCategory
-  });
+  // Component initialized
 
   const getCategoryColor = (category: string) => {
     switch (category) {
