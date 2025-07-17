@@ -94,7 +94,7 @@ Thumbs.db
 # Questa Web Interface specific
 workspace/jobs/*/
 workspace/projects/*/
-backend/data/*.db
+backend/data/questasim.db
 backend/uploads/
 backend/public/results/
 frontend/build/
