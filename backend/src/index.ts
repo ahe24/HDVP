@@ -30,9 +30,19 @@ const io = new Server(server, {
   cors: config.cors
 });
 
-// Middleware
-app.use(helmet());
+// Middleware - CORS must come before helmet to avoid conflicts
 app.use(cors(config.cors));
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:"],
+    },
+  },
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
@@ -210,6 +220,9 @@ jobExecutor.on('job-progress', (data) => {
 
 // Make io available to routes
 app.set('io', io);
+
+// Handle CORS preflight requests
+app.options('*', cors(config.cors));
 
 // API Routes
 app.use('/api/projects', projectRoutes);

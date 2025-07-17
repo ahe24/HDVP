@@ -26,18 +26,27 @@ export const config = {
    */
   cors: {
     /** @description Allowed origins for CORS requests. Can be comma-separated list in CORS_ORIGIN env var */
-    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : [
-      'http://localhost:3000', 
-      'http://localhost:3001',
-      // Allow any IP in the 192.168.x.x range for development
-      /^http:\/\/192\.168\.\d+\.\d+:300[01]$/
-    ],
+    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : true, // Allow all origins in development
     /** @description Allowed HTTP methods for CORS requests */
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     /** @description Allowed headers for CORS requests */
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    allowedHeaders: [
+      'Content-Type', 
+      'Authorization', 
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+      'Access-Control-Request-Method',
+      'Access-Control-Request-Headers'
+    ],
     /** @description Whether to allow credentials in CORS requests */
     credentials: true,
+    /** @description Exposed headers for CORS responses */
+    exposedHeaders: ['Content-Length', 'X-Cache'],
+    /** @description Preflight continue option */
+    preflightContinue: false,
+    /** @description Options success status */
+    optionsSuccessStatus: 204
   },
   
   /**
