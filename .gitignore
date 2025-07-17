@@ -65,7 +65,10 @@ dist
 
 # Gatsby files
 .cache/
-public
+
+# Build outputs (but keep source public directory)
+dist/
+build/
 
 # Storybook build outputs
 .out
@@ -97,8 +100,6 @@ workspace/projects/*/
 backend/data/questasim.db
 backend/uploads/
 backend/public/results/
-frontend/build/
-frontend/dist/
 
 # PM2
 .pm2/
