@@ -48,9 +48,10 @@ function getLocalIP() {
 // Configuration with environment variable support
 const config = {
   // Default values
-  BACKEND_PORT: process.env.BACKEND_PORT || 3001,
-  FRONTEND_PORT: process.env.FRONTEND_PORT || 3000,
+  BACKEND_PORT: process.env.BACKEND_PORT || 4100,
+  FRONTEND_PORT: process.env.FRONTEND_PORT || 4000,
   HOST_IP: process.env.HOST_IP || getLocalIP(),
+  BACKEND_HOST: process.env.BACKEND_HOST || '0.0.0.0', // Add this line
   
   // Environment
   NODE_ENV: process.env.NODE_ENV || 'development',
@@ -90,7 +91,7 @@ const apps = [
     env: {
       NODE_ENV: config.NODE_ENV,
       PORT: config.BACKEND_PORT,
-      HOST: config.HOST_IP,
+      HOST: config.BACKEND_HOST, 
       LOG_LEVEL: config.LOG_LEVEL,
       // QuestaSim Tool Paths
       QUESTA_MODELTECH_PATH: config.QUESTA_MODELTECH_PATH,
@@ -106,7 +107,7 @@ const apps = [
     env_production: {
       NODE_ENV: 'production',
       PORT: config.BACKEND_PORT,
-      HOST: config.HOST_IP,
+      HOST: config.BACKEND_HOST,
       LOG_LEVEL: 'warn',
       // QuestaSim Tool Paths
       QUESTA_MODELTECH_PATH: config.QUESTA_MODELTECH_PATH,
@@ -132,7 +133,7 @@ const apps = [
     env_development: {
       NODE_ENV: 'development',
       PORT: config.BACKEND_PORT,
-      HOST: config.HOST_IP,
+      HOST: config.BACKEND_HOST,
       LOG_LEVEL: 'debug',
       // QuestaSim Tool Paths
       QUESTA_MODELTECH_PATH: config.QUESTA_MODELTECH_PATH,
