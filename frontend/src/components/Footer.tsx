@@ -43,6 +43,9 @@ const Footer: React.FC = () => {
             <Typography variant="body2">
               © {currentYear} EDMFG • EDA Team • Developed by cs.jo
             </Typography>
+            <Typography variant="body2" sx={{ mt: 0.5, opacity: 0.9, fontWeight: 500 }}>
+              Technical Advisory: Sungmo Kang (Hanwha Systems)
+            </Typography>
             <Typography variant="body2" sx={{ mt: 0.5, opacity: 0.8 }}>
               HDL Design Verification Portal
             </Typography>
@@ -92,6 +95,9 @@ const Footer: React.FC = () => {
           {/* Text content */}
           <Typography variant="body2">
             © {currentYear} EDMFG • EDA Team • Developed by cs.jo
+          </Typography>
+          <Typography variant="body2" sx={{ mt: 0.5, opacity: 0.9, fontWeight: 500 }}>
+            Technical Advisory: Sungmo Kang (Hanwha Systems)
           </Typography>
           <Typography variant="body2" sx={{ mt: 0.5, opacity: 0.8 }}>
             HDL Design Verification Portal
